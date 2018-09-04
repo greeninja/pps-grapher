@@ -3,6 +3,7 @@
 require 'ascii_charts'
 require 'yaml'
 require 'optparse'
+require 'socket'
 
 default_options = {
   :data_set  => 30,
@@ -53,7 +54,7 @@ loop do
     data = data.drop(data.length - @options[:data_set])
   end
   system "clear"
-  puts "Packets per Second for port #{@options[:port]} on #{@options[:interface]}"
+  puts "Packets per Second for port #{@options[:port]} on #{@options[:interface]} - #{Socket.gethostname}"
   puts AsciiCharts::Cartesian.new(data, :bar => true).draw
   puts "Ctrl+c to exit..."
 end
