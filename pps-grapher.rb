@@ -38,7 +38,7 @@ option_parser.parse!
 data = Array.new
 i = 0
 
-cmd = "tcpdump -G #{@options[:time_int]} -W 1 -w /tmp/test -nnl -i #{@options[interface]} port #{@options[:port]} |& grep captured | awk '{print $1}'"
+cmd = "tcpdump -G #{@options[:time_int]} -W 1 -w /tmp/test -nnl -i #{@options[:interface]} port #{@options[:port]} |& grep captured | awk '{print $1}'"
 
 puts "Starting...."
 
