@@ -15,16 +15,16 @@ default_options = {
 
 option_parser = OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} [options]"
-  opts.on("-s", "--dataset", "Data Set - How many graph points to show") do |v|
+  opts.on("-s", "--dataset DATASET", "Data Set - How many graph points to show") do |v|
     @options[:data_set] = v
   end
-  opts.on("-t", "--time", "Time integer - How long to average packets per second over") do |v|
+  opts.on("-t", "--time TIME", "Time integer - How long to average packets per second over") do |v|
     @options[:time_int] = v
   end
-  opts.on("-i", "--interface", "Which interface to watch with tcpdump") do |v|
+  opts.on("-i", "--interface INTERFACE", "Which interface to watch with tcpdump") do |v|
     @options[:interface] = v
   end
-  opts.on("-p", "--port", "Which port to listen on") do |v|
+  opts.on("-p", "--port PORT", "Which port to listen on") do |v|
     @options[:port] = v
   end
   opts.on_tail("-h", "--help", "Show this message") do
