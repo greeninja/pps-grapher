@@ -8,28 +8,32 @@ default_options = {
   :data_set  => 30,
   :time_int  => 10,
   :interface => "eth0",
-  :port      => 53
+  :port      => 53,
 }
 
-option_parser - OptionParser.new do |opts|
+@options = default_options
+
+option_parser = OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} [options]"
-  opts.on("-s", "--dataset" "Data Set - How many graph points to show") do |v|
+  opts.on("-s", "--dataset", "Data Set - How many graph points to show") do |v|
     @options[:data_set] = v
   end
-  opts.on("-t", "--time" "Time integer - How long to average packets per second over") do |v|
+  opts.on("-t", "--time", "Time integer - How long to average packets per second over") do |v|
     @options[:time_int] = v
   end
-  opts.on("-i", "--interface" "Which interface to watch with tcpdump") do |v|
+  opts.on("-i", "--interface", "Which interface to watch with tcpdump") do |v|
     @options[:interface] = v
   end
-  opts.on("-p", "--port" "Which port to listen on") do |v|
+  opts.on("-p", "--port", "Which port to listen on") do |v|
     @options[:port] = v
   end
   opts.on_tail("-h", "--help", "Show this message") do
     puts opts
-    exit_prog 1
+    exit 1
   end
 end
+
+option_parser.parse!
 
 data = Array.new
 i = 0
