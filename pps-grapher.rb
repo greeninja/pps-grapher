@@ -16,16 +16,16 @@ default_options = {
 option_parser = OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} [options]"
   opts.on("-s", "--dataset DATASET", "Data Set - How many graph points to show") do |v|
-    @options[:data_set] = v
+    @options[:data_set] = v.to_i
   end
   opts.on("-t", "--time TIME", "Time integer - How long to average packets per second over") do |v|
-    @options[:time_int] = v
+    @options[:time_int] = v.to_i
   end
   opts.on("-i", "--interface INTERFACE", "Which interface to watch with tcpdump") do |v|
     @options[:interface] = v
   end
   opts.on("-p", "--port PORT", "Which port to listen on") do |v|
-    @options[:port] = v
+    @options[:port] = v.to_i
   end
   opts.on_tail("-h", "--help", "Show this message") do
     puts opts
@@ -49,7 +49,7 @@ loop do
   cnt = `#{cmd}`
   plot.push(cnt.strip.to_i / @options[:time_int])
   data.push(plot)
-  if data.length > data_set
+  if data.length > @options[:data_set]
     data = data.drop(data.length - @options[:data_set])
   end
   system "clear"
