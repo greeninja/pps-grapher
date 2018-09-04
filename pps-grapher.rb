@@ -55,5 +55,6 @@ loop do
   system "clear"
   puts "Packets per Second for port #{@options[:port]} on #{@options[:interface]}"
   puts AsciiCharts::Cartesian.new(data, :bar => true).draw
+  puts "Ctrl+c to exit..."
 end
 
